@@ -158,7 +158,43 @@ Cоздаем папки двумя разными способами
 ![image](https://github.com/user-attachments/assets/cf9d318c-9649-4804-880b-6527959e7149)
 
 # VictoriaMetrics
+Для начала зайдем в нужную папку
 
+`cd grafana_stack_for_docker`
 
+Открываем docker-compose
 
+`sudo vi docker-compose.yaml`
 
+После prometheus вставляем vmagent (вставлен готовый докер)
+
+![image](https://github.com/user-attachments/assets/872acf3c-7d39-4f56-9709-c58f5d1e5874)
+
+Открываем grafana на сайте и также создаем dashboard, но в Connection пишем http://victoriametrics:8428
+
+Заменяем имя из "Prometheus-2" в "Vika" нажимаем на dashboards add visualition выбираем "Vika" снизу меняем на "code"
+
+В терминале пишем:
+
+`echo -e "# TYPE OILCOINT_metric1 gauge\nOILCOINT_metric1 0" | curl --data-binary @- http://localhost:8428/api/v1/import/prometheus`
+
+команда отправляет бинарные данные (например, метрики в формате Prometheus) на локальный сервер
+
+Потом вводим команду которая делает запрос к API для получения данных по метрике OILCOINT_metric1
+
+`curl -G 'http://localhost:8428/api/v1/query' --data-urlencode 'query=OILCOINT_metric1'`
+
+Значение 0 меняем на любое другое
+
+![image](https://github.com/user-attachments/assets/99a2b9ae-cdad-47c9-92be-01eb62c3f72c)
+
+Заходим на сайт localhost:8428 и открываем vmui
+
+Копируем переменную OILCOINT_metric1 и вставляем в query
+
+![image](https://github.com/user-attachments/assets/0bebcea3-a1af-41d6-9b62-d42ae74e32e1)
+![image](https://github.com/user-attachments/assets/dc83100b-25c6-4853-92d4-0d0532fe19be)
+
+Копируем переменную OILCOINT_metric1 и вставляем в code
+
+![image](https://github.com/user-attachments/assets/ef6643e3-5d38-4d33-a580-2b1cb66e4143)
