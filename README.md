@@ -140,4 +140,25 @@ Cоздаем папки двумя разными способами
 ![image](https://github.com/user-attachments/assets/1d460484-6230-47a1-94ae-e75a506aaaf7)
 
 # Grafana на сайте
+- Заходим на сайт localhost:3000
+
+- Регестрируемся на сайте
+   - User и Password - admin, потом где он предлагает установить пароль, нажимаем - скип
+
+- Открываем Dashboards - create dashboard - ждем кнопку +Add visualization - configure a new data source - prometheus
+   - Connection: http://prometheus:9090
+   - Authentication - basic authentication - admin admin
+   - save and test
+
+- Dashboards - import dashboard
+   - Find and import...: 1860 - кнопка load
+   - prometheus - select prometheus
+   - import
+
+![image](https://github.com/user-attachments/assets/cf9d318c-9649-4804-880b-6527959e7149)
+
+# VictoriaMetrics
+
+
+
 
